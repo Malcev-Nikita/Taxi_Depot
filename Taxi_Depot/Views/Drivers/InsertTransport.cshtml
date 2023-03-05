@@ -1,0 +1,20 @@
+﻿@using Taxi_Depot.DAL;
+@using Taxi_Depot.DAL.Models;
+@{
+    ViewData["Title"] = "Водители";
+}
+
+<div style="text-align: center;">
+    <form method="post">
+        <input class="col-6" name="StateNumber" placeholder="Гос. Номер машины" type="text" style="margin: 10px 0;" />
+        <input class="col-6" name="Mark" placeholder="Марка машины" type="text" style="margin: 10px 0;" />
+        <input class="col-6" name="Year" placeholder="Год выпуска" type="text" style="margin: 10px 0;" />
+        <input class="col-6" name="Color" placeholder="Цвет машины" type="text" style="margin: 10px 0;" />
+        <div class="col-12" style="display: flex; justify-content: center; align-items: center; margin: 10px 0;">
+            <p style="margin-bottom: 0;">Продаётся?</p>
+            <input class="col-1" name="Seller" placeholder="Продаётся" type="checkbox" />
+        </div>
+
+        <input class="col-2 btn btn-success" asp-controller="Drivers" asp-action="SendTransport" style="margin-top: 20px" placeholder="Отправить" type="submit" />
+    </form>
+</div>
