@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Taxi_Depot.DAL.Enums;
 using Taxi_Depot.DAL.Models;
+using static Taxi_Depot.DAL.Enums.OrderStatus;
 
 namespace Taxi_Depot.DAL
 {
@@ -34,7 +36,10 @@ namespace Taxi_Depot.DAL
                     new Driver() {Id = 2, Name = "Александр", Surname = "Копаев", Phone= "+79378286840"},
                 });
 
-
+                entity.HasData(new List<Order>()
+                {
+                    new Order() {Id = 1, FullName = "Арнаутов Иван Павлович", ClientPhone = "+79370590439", Status = OrderStatusEnum.Waiting, From = "наб. Сталина, 88", Where = "пл. Домодедовская, 17", Cost = 600},
+                });
             });
         }
     }

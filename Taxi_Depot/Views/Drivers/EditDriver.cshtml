@@ -1,0 +1,21 @@
+﻿@using Taxi_Depot.DAL;
+@using Taxi_Depot.DAL.Models;
+@model IEnumerable<Driver>;
+@{
+    ViewData["Title"] = "Водители";
+}
+
+<div style ="text-align: center;">
+    <form method="post">
+        <div>
+            @foreach (var item in Model)
+            {
+                <input class="col-6" name="Name" placeholder="Имя" value="@item.Name" type="text" style="margin: 10px 0;" />
+                <input class="col-6" name="Surname" placeholder="Марка машины" value="@item.Surname" type="text" style="margin: 10px 0;" />
+                <input class="col-6" name="Phone" placeholder="Год выпуска" value="@item.Phone" type="text" style="margin: 10px 0;" />
+            }
+        </div>
+
+        <input class="col-2 btn btn-success" asp-controller="Drivers" asp-action="SendDriver" style="margin-top: 20px" placeholder="Отправить" type="submit" />
+    </form>
+</div>

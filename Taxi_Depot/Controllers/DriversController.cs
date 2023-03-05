@@ -16,6 +16,7 @@ namespace Taxi_Depot.Controllers
     {
         private readonly ILogger<DriversController> _logger;
         private readonly MainContext _mainContext;
+        private static int EditId;
         private static Driver driver;
 
         public DriversController(ILogger<DriversController> logger, MainContext mainContext)
@@ -29,6 +30,28 @@ namespace Taxi_Depot.Controllers
             var res = _mainContext.Drivers.ToList();
 
             return View(res);
+        }
+
+        public IActionResult EditDriver(int id)
+        {
+            var res = _mainContext.Drivers.Where(x => x.Id == id).ToList();
+            EditId = id;
+
+            return View(res);
+        }
+
+        [HttpPost]
+        public RedirectResult SendDriver(string Name, string Surname, string Phone)
+        {
+            var res = _mainContext.Drivers.FirstOrDefault(x => x.Id == EditId);
+
+            res.Name= Name;
+            res.Surname= Surname;
+            res.Phone= Phone;
+
+            _mainContext.SaveChanges();
+
+            return Redirect("/Drivers");
         }
 
         public IActionResult ViewTransports(int id)

@@ -20,17 +20,13 @@ namespace Taxi_Depot.DAL.Models
 
         public OrderStatus.OrderStatusEnum Status { get; set; }
 
-        public Service services { get; set; }
-
         [Required(ErrorMessage = "Это поле обязательно")]
         public string From { get; set; }
 
         [Required(ErrorMessage = "Это поле обязательно")]
         public string Where { get; set; }
 
-        public Driver Orders { get; set; }
-
         [Required(ErrorMessage = "Это поле обязательно")]
-        public string Cost { get; set; }
+        public int Cost { get; set; }
     }
 }
