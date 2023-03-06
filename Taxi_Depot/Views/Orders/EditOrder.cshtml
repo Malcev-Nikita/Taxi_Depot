@@ -1,0 +1,32 @@
+﻿@using Taxi_Depot.DAL;
+@using Taxi_Depot.DAL.Models;
+@using Taxi_Depot.DAL.Enums;
+@model IEnumerable<Order>;
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<div style ="text-align: center;">
+    <form method="post">
+        <div>
+            @foreach (var item in Model)
+            {
+                <input class="col-6" name="FullName" placeholder="ФИО" value="@item.FullName" type="text" style="margin: 10px 0;" />
+                <input class="col-6" name="ClientPhone" placeholder="Номер телефона" value="@item.ClientPhone" type="text" style="margin: 10px 0;" />
+                <input class="col-6" name="From" placeholder="Откуда" value="@item.From" type="text" style="margin: 10px 0;" />
+                <input class="col-6" name="Where" placeholder="Куда" value="@item.Where" type="text" style="margin: 10px 0;" />
+                <input class="col-6" name="Cost" placeholder="Стоимость" value="@item.Cost" type="text" style="margin: 10px 0;" />
+
+                <div class="list-group col-8" id="list-tab" role="tablist" style="margin: 10px auto; display: flex; flex-direction: row;">
+                    <a class="list-group-item list-group-item-action @(item.Status == OrderStatus.OrderStatusEnum.Waiting ? "active" : "")" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="Waiting" style="padding: 0.25rem 1.25rem; border-radius: 5px; margin: 0 5px;">Ожидает такси</a>
+                    <a class="list-group-item list-group-item-action @(item.Status == OrderStatus.OrderStatusEnum.OnMove ? "active" : "")" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="OnMove" style="padding: 0.25rem 1.25rem; border-radius: 5px; margin: 0 5px;">В пути</a>
+                    <a class="list-group-item list-group-item-action @(item.Status == OrderStatus.OrderStatusEnum.Delivered ? "active" : "")" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="Delivered" style="padding: 0.25rem 1.25rem; border-radius: 5px; margin: 0 5px;">Доставлен</a>
+                    <a class="list-group-item list-group-item-action @(item.Status == OrderStatus.OrderStatusEnum.Canceled ? "active" : "")" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="Canceled" style="padding: 0.25rem 1.25rem; border-radius: 5px; margin: 0 5px;">Отменен</a>
+                </div>
+
+            }
+        </div>
+
+        <input class="col-2 btn btn-success" asp-controller="Orders" asp-action="SendOrder" style="margin-top: 20px" placeholder="Отправить" type="submit" />
+    </form>
+</div>
